@@ -34,3 +34,4 @@
 # Macos things
 *.DS_Store
 *.idea/
+*cmake-build-debug
