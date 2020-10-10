@@ -1,0 +1,2 @@
+# park-cpp
+BMSTU TECHNOPARK SUPER THING
