@@ -9,10 +9,8 @@ html_tag *parse_tag(const char *str)
     if (tag == NULL)
         return NULL;
 
-    while (*str != '>' && *str != '\0')
-    {
-        ++str;
-    }
+    str += parse_status(str, tag);
+    parse_name(str, tag);
 
     return tag;
 }
@@ -20,7 +18,7 @@ html_tag *parse_tag(const char *str)
 int parse_status(const char *str, html_tag *tag)
 {
     int i = 0;
-    if (str[i] != '<')
+    if (str[i] == '<')
     {
         ++i;
         if (str[i + 1] == '/')
@@ -36,7 +34,7 @@ int parse_status(const char *str, html_tag *tag)
 
 int parse_name(const char *str, html_tag *tag)
 {
-    int i = str_find(str, ' ');
+    int i = str_first_char_occurence(str, " >");
     str_create_ncopy(&tag->name, str, i);
     return i;
 }
@@ -46,6 +44,6 @@ int parse_attribute(const char *str, html_tag *tag)
     int eq_pos = str_find(str, '=');
     int end_pos = str_find(str + eq_pos + 2, '"');
 
-    return i;
+    return end_pos;
 };
 
