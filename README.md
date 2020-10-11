@@ -1,2 +1,2 @@
 # park-cpp
-BMSTU TECHNOPARK SUPER THING
+Bmstu technopark repo
