@@ -46,4 +46,3 @@ int parse_attribute(const char *str, html_tag *tag)
 
     return end_pos;
 };
-
