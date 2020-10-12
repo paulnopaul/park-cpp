@@ -26,7 +26,8 @@ add_subdirectory(test)
 include_directories("${PROJECT_SOURCE_DIR}/include")
 
 file(GLOB sources
-        "${PROJECT_SOURCE_DIR}/include/*.h"
+        "${PROJECT_SOURCE_DIR}/include/html_tag/*.h"
+        "${PROJECT_SOURCE_DIR}/include/my_str/*.h"
         "${PROJECT_SOURCE_DIR}/src/*.c")
 
-add_executable(iz1 ${sources})
+add_executable(iz1 ${sources} include/my_str/alg.h src/alg.c)

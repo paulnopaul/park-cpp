@@ -12,13 +12,13 @@
  * </tag_name>
  */
 
-#ifndef IZ1_HTML_TAG_H
-#define IZ1_HTML_TAG_H
+#ifndef IZ1_TAG_H
+#define IZ1_TAG_H
 
 #include <stdbool.h>
 #include <stdlib.h>
 
-#include "html_tag_attribute.h"
+#include "attr.h"
 
 typedef struct
 {
@@ -31,7 +31,6 @@ html_tag *parse_tag(const char *str);
 
 int parse_status(const char *str, html_tag *tag);
 
-int parse_name(const char *str, html_tag *tag);
 
 
-#endif //IZ1_HTML_TAG_H
+#endif //IZ1_TAG_H

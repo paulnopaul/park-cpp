@@ -5,13 +5,13 @@
  */
 #include <stdio.h>
 
-#include "../include/html_tag.h"
+#include "html_tag/tag.h"
 
 #define MAX_STR_LEN 256
 
 int main()
 {
-    char line[MAX_STR_LEN] = "<Hello>";
+    char line[MAX_STR_LEN] = "o>";
 //    fgets(line, MAX_STR_LEN, stdin);
     html_tag *tag = parse_tag(line);
     printf("line = '%s'\n", line);
