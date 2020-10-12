@@ -5,7 +5,7 @@ extern "C" {
 #include "html_tag/attr.h"
 }
 
-TEST(correct_input, one_attributе_no_quotes)
+TEST(correct_input, no_quotes)
 {
     char correct_name[] = "attr1";
     char correct_value[] = "value1";
@@ -17,7 +17,7 @@ TEST(correct_input, one_attributе_no_quotes)
     free_attr(attr);
 }
 
-TEST(correct_input, one_attributе_quotes)
+TEST(correct_input, quotes_one)
 {
     char correct_name[] = "attr1";
     char correct_value[] = "value1";
@@ -29,7 +29,7 @@ TEST(correct_input, one_attributе_quotes)
     free_attr(attr);
 }
 
-TEST(correct_input, one_attribute_quotes_space)
+TEST(correct_input, quotes_two)
 {
     char correct_name[] = "attr1";
     char correct_value[] = "value1 value2";
