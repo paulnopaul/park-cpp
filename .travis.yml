@@ -1,25 +1,12 @@
-dist:     trusty    # используем Ubuntu 14.04 Trusty Tahr (а не 12.02 Precise Pangolin)
-sudo:     required  # используем Virtual Machine (а не Docker container)
+language: c
 
-language: c       # на практике разницы между специфичным для C++ окружением
-                    # и, скажем, python -- никакой. Но пусть будет cpp.
-
-os:
-  -linux
-
-compiler:
-  -gcc
-  
+sudo: false # only for faster builds
 script:
-    # скрипт сборки и тестирования проекта:
   - cd iz1
-  - mkdir build
+  - mkdir build 
   - cd build
-  - cmake ..
-  - make 
-  - cd test
-  - ctest
+  - cmake .. && make
+  - cd test && ctest
 
-after_script:
-  - make clean 
-
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
