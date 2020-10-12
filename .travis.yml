@@ -17,6 +17,8 @@ script:
   - cd build
   - cmake ..
   - make 
+  - cd test
+  - ctest
 
 after_script:
   - make clean 
