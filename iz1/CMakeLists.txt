@@ -2,9 +2,14 @@ cmake_minimum_required(VERSION 3.1)
 
 project(iz1)
 
+set(CMAKE_CXX_COMPILER /usr/bin/g++)
+
+set(CMAKE_C_COMPILER /usr/bin/cc)
+
 ##
 ### Test definitions ###
 ##
+
 
 configure_file(CMakeLists.txt.in
         googletest-download/CMakeLists.txt)
