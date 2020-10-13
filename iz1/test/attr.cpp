@@ -14,7 +14,7 @@ TEST(correct_input, no_quotes)
     tag_attr *attr = parse_attr(line, &attr_end);
     ASSERT_EQ(strcmp(attr->name, correct_name), 0);
     ASSERT_EQ(strcmp(attr->value, correct_value), 0);
-    free_attr(attr);
+    free_attr(&attr);
 }
 
 TEST(correct_input, quotes_one)
@@ -26,7 +26,7 @@ TEST(correct_input, quotes_one)
     tag_attr *attr = parse_attr(line, &attr_end);
     ASSERT_EQ(strcmp(attr->name, correct_name), 0);
     ASSERT_EQ(strcmp(attr->value, correct_value), 0);
-    free_attr(attr);
+    free_attr(&attr);
 }
 
 TEST(correct_input, quotes_two)
@@ -38,5 +38,5 @@ TEST(correct_input, quotes_two)
     tag_attr *attr = parse_attr(line, &attr_end);
     ASSERT_EQ(strcmp(attr->name, correct_name), 0);
     ASSERT_EQ(strcmp(attr->value, correct_value), 0);
-    free_attr(attr);
+    free_attr(&attr);
 }
