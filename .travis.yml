@@ -2,7 +2,8 @@ language:
 	- c
 	- cpp
 
-sudo: false # only for faster builds
+os: linux
+dist: xenial
 
 before_script:
 	- cd iz1
