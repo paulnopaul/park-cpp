@@ -5,6 +5,8 @@
 #ifndef IZ1_ALG_H
 #define IZ1_ALG_H
 
+#define ASCII_LETTERS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 int str_find(const char *str, char c);
 
 int str_first_char_occurence(const char *str, const char *c);

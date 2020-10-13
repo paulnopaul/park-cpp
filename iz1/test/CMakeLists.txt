@@ -6,13 +6,13 @@ list(REMOVE_ITEM sources "${PROJECT_SOURCE_DIR}/src/main.c")
 file(GLOB tests "${PROJECT_SOURCE_DIR}/test/*.cpp")
 list(REMOVE_ITEM tests "${PROJECT_SOURCE_DIR}/test/main.cpp")
 
-foreach(file ${tests})
+foreach (file ${tests})
     set(name)
     get_filename_component(name ${file} NAME_WE)
     add_executable("${name}_tests"
             ${sources}
             ${file}
-            "${PROJECT_SOURCE_DIR}/test/main.cpp" attr.cpp html_tag.cpp)
+            "${PROJECT_SOURCE_DIR}/test/main.cpp" attr.cpp html_tag.cpp check_attr_format.cpp check_html_tag_format.cpp)
     target_link_libraries("${name}_tests" gtest_main)
     add_test(NAME ${name} COMMAND "${name}_tests")
-endforeach()
+endforeach ()

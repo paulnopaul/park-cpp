@@ -28,6 +28,8 @@ typedef struct
     tag_attr **attributes;
 } html_tag;
 
+bool check_html_tag_format(const char *str);
+
 html_tag *parse_tag(const char *str);
 
 size_t parse_status(const char *str, html_tag *tag);

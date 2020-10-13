@@ -3,6 +3,40 @@
 #include "my_str/mem.h"
 #include "my_str/alg.h"
 
+bool check_html_tag_format(const char *str)
+{
+    bool ok = str[0] == '<';
+    if (ok && str[1] == '/')
+    {
+        size_t closing_pos = str_find(str, '>');
+        for (size_t i = 2; ok && i < closing_pos; ++i)
+            ok += (ASCII_LETTERS[str_find(ASCII_LETTERS, str[i])] != '\0');
+    } else if (ok)
+    {
+        size_t name_end = str_first_char_occurence(str, " >");
+        for (size_t i = 1; ok && i < name_end; ++i)
+            ok += (ASCII_LETTERS[str_find(ASCII_LETTERS, str[i])] != '\0');
+
+        if (ok)
+        {
+            size_t closing_pos = str_find(str, '>');
+            ok = (str[closing_pos] == '>');
+        }
+
+        if (ok)
+        {
+            size_t attr_end = name_end;
+            str += attr_end;
+            while (ok && str[0] != '>')
+            {
+                ok = check_attr_format(str + 1, &attr_end);
+                str += attr_end + 1;
+            }
+        }
+    }
+    return ok;
+}
+
 html_tag *parse_tag(const char *str)
 {
     html_tag *tag = (html_tag *) malloc(sizeof(html_tag));

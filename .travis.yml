@@ -1,12 +1,15 @@
-language: c
+language: 
+	- c
+	- cpp
 
 sudo: false # only for faster builds
+
+before_script:
+	- cd iz1
+	- mkdir build
+	- cd build
+
 script:
-  - cd iz1
-  - mkdir build 
-  - cd build
   - cmake .. && make
   - cd test && ctest
 
-after_success:
-  - bash <(curl -s https://codecov.io/bash)

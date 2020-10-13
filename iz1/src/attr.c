@@ -3,8 +3,33 @@
 #include <stddef.h>
 
 #include "my_str/mem.h"
+#include "my_str/alg.h"
 
-// Tag attribute create/delete
+bool check_attr_format(const char *str, size_t *attr_end)
+{
+    size_t eq_pos = str_find(str, '=');
+    bool ok = true;
+    if (str[eq_pos] == '\0')
+        ok = false;
+
+    for (int i = 0; ok && i < eq_pos; ++i)
+        if (str[i] == ' ')
+            ok = false;
+
+    if (ok)
+    {
+        eq_pos++;
+        if (str[eq_pos] == '\"')
+            *attr_end = str_find(str + eq_pos + 1, '\"') + 2;
+        else
+            *attr_end = str_first_char_occurence(str + eq_pos, " >");
+
+        *attr_end += eq_pos;
+        ok = (str[*attr_end] != '\0');
+    }
+    return ok;
+}
+
 void free_attr(tag_attr **attr)
 {
     free((*attr)->name);

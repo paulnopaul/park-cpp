@@ -6,12 +6,15 @@
 #define IZ1_ATTR_H
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct
 {
     char *name;
     char *value;
 } tag_attr;
+
+bool check_attr_format(const char *str, size_t *attr_end);
 
 tag_attr *parse_attr(const char *str, int *attr_end);
 
