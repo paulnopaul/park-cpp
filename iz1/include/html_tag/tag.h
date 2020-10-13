@@ -24,12 +24,15 @@ typedef struct
 {
     char *name;
     bool is_opening;
-    tag_attr *attributes;
+    size_t attributes_count;
+    tag_attr **attributes;
 } html_tag;
 
 html_tag *parse_tag(const char *str);
 
-int parse_status(const char *str, html_tag *tag);
+size_t parse_status(const char *str, html_tag *tag);
+
+void free_tag(html_tag **tag);
 
 
 

@@ -13,7 +13,7 @@ size_t str_create_ncopy(char **to_allocate, const char *to_copy, size_t n);
 
 size_t str_create_copy(char **to_allocate, const char *to_copy);
 
-size_t str_create_word(char **to_allocate, const char *src, char word_end);
+size_t str_create_word(char **to_allocate, const char *src, const char *sep);
 
 
 #endif //IZ1_MEM_H

@@ -1,5 +1,7 @@
 #include "my_str/alg.h"
 
+#include <string.h>
+
 int str_find(const char *str, char c)
 {
     int i = 0;
@@ -11,7 +13,7 @@ int str_find(const char *str, char c)
 int str_first_char_occurence(const char *str, const char *c)
 {
     int i = 0;
-    while (str_find(c, str[i]) == -1 && str[i] != '\0')
+    while (c[str_find(c, str[i])] == '\0' && str[i] != '\0')
         ++i;
     return i;
 }

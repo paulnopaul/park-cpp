@@ -13,10 +13,10 @@ typedef struct
     char *value;
 } tag_attr;
 
+tag_attr *parse_attr(const char *str, int *attr_end);
 
-void free_attr(tag_attr *attr);
+tag_attr **parse_attr_arr(const char *str, size_t count);
 
-tag_attr *parse_attr(const char *str, int *attr_end );
-
+void free_attr(tag_attr **attr);
 
 #endif //IZ1_ATTR_H

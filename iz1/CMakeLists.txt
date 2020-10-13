@@ -33,4 +33,4 @@ file(GLOB sources
         "${PROJECT_SOURCE_DIR}/include/my_str/*.h"
         "${PROJECT_SOURCE_DIR}/src/*.c")
 
-add_executable(iz1 ${sources} include/my_str/alg.h src/alg.c)
+add_executable(iz1 ${sources} )

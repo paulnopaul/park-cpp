@@ -23,8 +23,8 @@ int n(char **to_allocate, const char *to_copy)
     return str_create_ncopy(to_allocate, to_copy, len);
 }
 
-size_t str_create_word(char **to_allocate, const char *src, char sep)
+size_t str_create_word(char **to_allocate, const char *src, const char *sep)
 {
-    int word_end = str_find(src, sep);
+    int word_end = str_first_char_occurence(src, sep);
     return str_create_ncopy(to_allocate, src, word_end);
 }
