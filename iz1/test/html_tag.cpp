@@ -2,7 +2,7 @@
 #include <cstring>
 
 extern "C" {
-#include "html_tag/tag.h"
+#include "html_tag/html_tag.h"
 }
 
 TEST(tag_correct_input, no_quotes)

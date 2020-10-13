@@ -1,4 +1,4 @@
-#include "html_tag/tag.h"
+#include "html_tag/html_tag.h"
 
 #include "my_str/mem.h"
 #include "my_str/alg.h"
@@ -41,6 +41,10 @@ size_t parse_status(const char *str, html_tag *tag)
 
 void free_tag(html_tag **tag)
 {
+    free((*tag)->name);
+    for (size_t i = 0; i < (*tag)->attributes_count; ++i)
+        free_attr((*tag)->attributes + i);
+    free((*tag)->attributes);
     free(*tag);
     *tag = NULL;
 }
