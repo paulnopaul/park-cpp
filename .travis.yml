@@ -1,15 +1,15 @@
 language: cpp
 os: linux
+dist: xenial
 compiler: gcc
 
-sudo: false 
 
-before_scrip:
+before_script:
   - cd iz1
   - mkdir build
   - cd build
 
-matrix: 
+jobs: 
   #
   # Valgrind
   #
