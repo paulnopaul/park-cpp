@@ -11,10 +11,25 @@
 
 int main()
 {
-    char line[MAX_STR_LEN] = "o>";
-//    fgets(line, MAX_STR_LEN, stdin);
-    html_tag *tag = parse_tag(line);
-    printf("line = '%s'\n", line);
-    printf("Tag:\nname: \t\t'%s'\nis_opening: \t'%d'\n", tag->name, tag->is_opening);
+    char str[MAX_STR_LEN];
+    fgets(str, sizeof(str), stdin);
+    html_tag *tag = parse_tag(str);
+    if (!tag)
+        puts("Wrong tag format!");
+    else
+    {
+        printf("Tag name = \"%s\"\n", tag->name);
+        if (tag->is_opening)
+            puts("Opening tag");
+        else
+            puts("Closing tag");
+        if (tag->attributes_count)
+        {
+            puts("Attributes:");
+            for (size_t i = 0; i < tag->attributes_count; ++i)
+                printf("%s=\"%s\"\n", tag->attributes[i]->name, tag->attributes[i]->value);
+        }
+        free_tag(&tag);
+    }
     return 0;
 }
