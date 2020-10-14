@@ -1,12 +1,34 @@
-language: c
+language: cpp
+os: linux
+compiler: gcc
 
-sudo: false # only for faster builds
-script:
-  - cd iz1
-  - mkdir build 
+env: 
+  - DIR=iz1
+
+
+sudo: false 
+
+before_scrip:
+  - mkdir build
   - cd build
-  - cmake .. && make
-  - cd test && ctest
 
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+matrix: 
+  #
+  # Valgrind
+  #
+  - os: linux
+    env:
+      - TEST="Valgrind"
+    addons:
+      apt:
+        sources:
+          - ubuntu-toolchain-r-test
+        packages:
+          - gcc-6
+          - g++-6
+          - valgrind
+    script:
+      - cmake ..
+      - make
+      - ctest -T memcheck
+

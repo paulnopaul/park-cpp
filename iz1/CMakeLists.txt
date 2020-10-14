@@ -18,6 +18,7 @@ set(MEMORYCHECK_COMMAND_OPTIONS "${MEMORYCHECK_COMMAND_OPTIONS} --error-exitcode
 ##
 ### Test definitions ###
 ##
+
 include (CTest)
 
 configure_file(CMakeLists.txt.in
