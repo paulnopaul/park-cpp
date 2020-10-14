@@ -5,7 +5,7 @@
 #ifndef IZ1_ALG_H
 #define IZ1_ALG_H
 
-#define ASCII_LETTERS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define ASCII_NAME_ALLOWED "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789\"-"
 
 int str_find(const char *str, char c);
 

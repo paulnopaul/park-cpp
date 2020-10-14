@@ -10,12 +10,12 @@ bool check_html_tag_format(const char *str)
     {
         size_t closing_pos = str_find(str, '>');
         for (size_t i = 2; ok && i < closing_pos; ++i)
-            ok += (ASCII_LETTERS[str_find(ASCII_LETTERS, str[i])] != '\0');
+            ok = (ASCII_NAME_ALLOWED[str_find(ASCII_NAME_ALLOWED, str[i])] != '\0');
     } else if (ok)
     {
         size_t name_end = str_first_char_occurence(str, " >");
         for (size_t i = 1; ok && i < name_end; ++i)
-            ok += (ASCII_LETTERS[str_find(ASCII_LETTERS, str[i])] != '\0');
+           ok = (ASCII_NAME_ALLOWED[str_find(ASCII_NAME_ALLOWED, str[i])] != '\0');
 
         if (ok)
         {
@@ -39,6 +39,9 @@ bool check_html_tag_format(const char *str)
 
 html_tag *parse_tag(const char *str)
 {
+    if (!check_html_tag_format(str))
+        return NULL;
+
     html_tag *tag = (html_tag *) malloc(sizeof(html_tag));
 
     if (tag == NULL)
