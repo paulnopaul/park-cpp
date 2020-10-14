@@ -30,12 +30,8 @@ matrix:
   #  
    - os: linux
      env:
-      - TEST="CppCheck"
-     addons:
-       apt:
-         sources:
-          - ubuntu-toolchain-r-test
-    script:
-      - cmake -DENABLE_CPPCHECK=ON -DCMAKE_CXX_COMPILER="g++-6" ..
-      - make
-      - make check
+       - TEST="CppCheck"
+     script:
+       - cmake -DENABLE_CPPCHECK=ON -DCMAKE_CXX_COMPILER="g++-6" ..
+       - make
+       - make check
