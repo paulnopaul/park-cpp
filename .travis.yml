@@ -1,19 +1,28 @@
-sudo: false
+# sudo: false
 
-dist: xenial
+# dist: xenial
 
-os: linux
+# os: linux
 
-language: 
-	- c
-	- cpp
+# language: 
+# 	- c
+# 	- cpp
 
-before_script:
-	- cd iz1
-	- mkdir build
-	- cd build
+# before_script:
+# 	- cd iz1
+# 	- mkdir build
+# 	- cd build
 
+# script:
+  	# - cmake .. && make
+  	# - cd test && ctest
+
+language: c
+
+sudo: false # only for faster builds
 script:
-  	- cmake .. && make
-  	- cd test && ctest
-
+  - cd iz1
+  - mkdir build
+  - cd build
+  - cmake .. && make
+  - cd test && ctest
