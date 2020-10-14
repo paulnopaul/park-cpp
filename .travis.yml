@@ -2,13 +2,10 @@ language: cpp
 os: linux
 compiler: gcc
 
-env: 
-  - DIR=iz1
-
-
 sudo: false 
 
 before_scrip:
+  - cd iz1
   - mkdir build
   - cd build
 
