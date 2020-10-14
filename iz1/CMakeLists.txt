@@ -2,19 +2,30 @@ cmake_minimum_required(VERSION 3.1)
 
 project(iz1 C CXX)
 
-set (CMAKE_C_STANDARD 99)
-set (CMAKE_CXX_STANDARD 17)
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_CXX_STANDARD 17)
+
+##
+### Valgrind
+##
+
+set(MEMORYCHECK_COMMAND_OPTIONS "${MEMORYCHECK_COMMAND_OPTIONS} --leak-check=full")
+set(MEMORYCHECK_COMMAND_OPTIONS "${MEMORYCHECK_COMMAND_OPTIONS} --track-fds=yes")
+set(MEMORYCHECK_COMMAND_OPTIONS "${MEMORYCHECK_COMMAND_OPTIONS} --trace-children=yes")
+set(MEMORYCHECK_COMMAND_OPTIONS "${MEMORYCHECK_COMMAND_OPTIONS} --error-exitcode=1")
+
 
 ##
 ### Test definitions ###
 ##
+include (CTest)
 
 configure_file(CMakeLists.txt.in
         googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download)
 execute_process(COMMAND ${CMAKE_COMMAND} --build .
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download)
 
 add_subdirectory(${CMAKE_BINARY_DIR}/googletest-src
         ${CMAKE_BINARY_DIR}/googletest-build)
@@ -33,4 +44,4 @@ file(GLOB sources
         "${PROJECT_SOURCE_DIR}/include/my_str/*.h"
         "${PROJECT_SOURCE_DIR}/src/*.c")
 
-add_executable(iz1 ${sources} )
+add_executable(iz1 ${sources})
