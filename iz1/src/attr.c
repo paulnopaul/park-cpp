@@ -30,7 +30,7 @@ bool check_attr_format(const char *str, size_t *attr_end)
     return ok;
 }
 
-void free_attr(tag_attr **attr)
+void free_attr(tag_attr_t **attr)
 {
     free((*attr)->name);
     free((*attr)->value);
@@ -38,10 +38,10 @@ void free_attr(tag_attr **attr)
     *attr = NULL;
 }
 
-tag_attr *parse_attr(const char *str, int *attr_end)
+tag_attr_t *parse_attr(const char *str, int *attr_end)
 {
     const char *str_start = str;
-    tag_attr *attr = (tag_attr *) malloc(sizeof(tag_attr));
+    tag_attr_t *attr = (tag_attr_t *) malloc(sizeof(tag_attr_t));
 
     str += str_create_word(&attr->name, str, "=");
     if (*str == '"')
@@ -55,9 +55,9 @@ tag_attr *parse_attr(const char *str, int *attr_end)
     return attr;
 }
 
-tag_attr **parse_attr_arr(const char *str, size_t count)
+tag_attr_t **parse_attr_arr(const char *str, size_t count)
 {
-    tag_attr **attr_arr = (tag_attr **) malloc(count * sizeof(tag_attr *));
+    tag_attr_t **attr_arr = (tag_attr_t **) malloc(count * sizeof(tag_attr_t *));
     for (size_t i = 0; i < count; ++i)
     {
         int attr_end = 0;

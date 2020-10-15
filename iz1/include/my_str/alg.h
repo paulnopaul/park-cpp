@@ -1,7 +1,3 @@
-//
-// Created by Pavel Cheklin on 11/10/2020.
-//
-
 #ifndef IZ1_ALG_H
 #define IZ1_ALG_H
 

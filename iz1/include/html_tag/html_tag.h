@@ -25,7 +25,7 @@ typedef struct
     char *name;
     bool is_opening;
     size_t attributes_count;
-    tag_attr **attributes;
+    tag_attr_t **attributes;
 } html_tag;
 
 bool check_html_tag_format(const char *str);
@@ -35,7 +35,5 @@ html_tag *parse_tag(const char *str);
 size_t parse_status(const char *str, html_tag *tag);
 
 void free_tag(html_tag **tag);
-
-
 
 #endif //IZ1_HTML_TAG_H

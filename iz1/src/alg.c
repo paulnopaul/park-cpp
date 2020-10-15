@@ -1,7 +1,5 @@
 #include "my_str/alg.h"
 
-#include <string.h>
-
 int str_find(const char *str, char c)
 {
     int i = 0;
