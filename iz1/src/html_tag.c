@@ -5,7 +5,7 @@
 
 bool check_html_tag_format(const char *str)
 {
-    bool ok = str[0] == '<';
+    bool ok = str && str[0] == '<';
     if (ok && str[1] == '/')
     {
         size_t closing_pos = str_find(str, '>');

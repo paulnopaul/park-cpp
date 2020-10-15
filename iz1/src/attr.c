@@ -7,15 +7,18 @@
 
 bool check_attr_format(const char *str, size_t *attr_end)
 {
+    if (!str || !attr_end)
+        return false;
+
     size_t eq_pos = str_find(str, '=');
     if (str[eq_pos] == '\0')
         return false;
 
     for (int i = 0; i < eq_pos; ++i)
+    {
         if (str[i] == ' ')
-        {
             return false;
-        }
+    }
 
     eq_pos++;
     if (str[eq_pos] == '\"')
