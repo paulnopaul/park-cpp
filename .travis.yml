@@ -36,3 +36,17 @@ jobs:
       - cmake -DENABLE_CPPCHECK=ON ..
       - make
       - make check
+  
+  # 
+  # Coverage
+  #
+  - os: linux
+    env:
+      - TEST="GCovr"
+
+    script:
+      - cmake -DENABLE_GCOV
+      - make 
+      - ctest
+      - cd .. && gcovr 
+     
