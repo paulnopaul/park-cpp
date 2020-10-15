@@ -8,11 +8,10 @@
 bool check_attr_format(const char *str, size_t *attr_end)
 {
     size_t eq_pos = str_find(str, '=');
-    bool ok = true;
     if (str[eq_pos] == '\0')
         return false;
 
-    for (int i = 0; ok && i < eq_pos; ++i)
+    for (int i = 0; i < eq_pos; ++i)
         if (str[i] == ' ')
         {
             return false;
@@ -25,9 +24,7 @@ bool check_attr_format(const char *str, size_t *attr_end)
         *attr_end = str_first_char_occurence(str + eq_pos, " >");
 
     *attr_end += eq_pos;
-    ok = (str[*attr_end] != '\0');
-
-    return ok;
+    return str[*attr_end] != '\0';
 }
 
 void free_attr(tag_attr_t **attr)
