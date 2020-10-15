@@ -2,6 +2,9 @@
 
 int str_find(const char *str, char c)
 {
+    if (!str)
+        return -1;
+
     int i = 0;
     while (str[i] != c && str[i] != '\0')
         ++i;
