@@ -40,18 +40,18 @@ jobs:
   # 
   # Coverage
   #
-  - os: linux
-    env:
-      - TEST="GCovr"
-    addons:
-      apt:
-        packages:
-          - gcov
-    before_script:
-      - pip3 install gcovr
-    script:
-      - cmake -DENABLE_GCOV
-      - make 
-      - ctest
-      - cd .. && gcovr 
+  # - os: linux
+  #  env:
+  #   - TEST="GCovr"
+  # addons:
+  #   apt:
+  #     packages:
+  #       - gcov
+  # before_script:
+  #   - pip3 install gcovr
+  # script:
+  #   - cmake -DENABLE_GCOV
+  #   - make 
+  #   - ctest
+  #   - cd .. && gcovr 
      
