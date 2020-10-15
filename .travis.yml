@@ -44,6 +44,7 @@ jobs:
     env:
       - TEST="GCovr"
     before_script:
+      - sudo apt-get update
       - sudo apt-get install gcov 
       - pip3 install gcovr
     script:
