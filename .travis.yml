@@ -43,7 +43,9 @@ jobs:
   - os: linux
     env:
       - TEST="GCovr"
-
+    before_script:
+      - sudo apt-get install gcov 
+      - pip3 install gcovr
     script:
       - cmake -DENABLE_GCOV
       - make 
