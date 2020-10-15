@@ -14,7 +14,9 @@ bool check_attr_format(const char *str, size_t *attr_end)
 
     for (int i = 0; ok && i < eq_pos; ++i)
         if (str[i] == ' ')
+        {
             ok = false;
+        }
 
     if (ok)
     {
