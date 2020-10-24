@@ -4,9 +4,12 @@
  * вход текстовую строку с одним тегом. На выход функция должна возвращать указатель на инициализированную структуру.
  */
 #include <stdio.h>
+#include "moodfinder.h"
 
 int main()
 {
     puts("Hello world");
+    char filename[] = "../examples/f.txt";
+    printf("Mood of %s is %d\n", filename, find_mood(filename));
     return 0;
 }

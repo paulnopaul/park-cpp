@@ -1,0 +1,1 @@
+int find_mood(const char *filename);
