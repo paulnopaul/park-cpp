@@ -13,10 +13,14 @@ foreach (file ${tests})
     get_filename_component(name ${file} NAME_WE)
     add_executable("${name}_tests"
             ${file}
-            "${PROJECT_SOURCE_DIR}/test/main.cpp")
+            "${PROJECT_SOURCE_DIR}/test/main.cpp"
+            )
     target_link_libraries("${name}_tests"
             libmoodfinder_s
             gtest_main
             )
-    add_test(NAME ${name} COMMAND "${name}_tests")
+    add_test(NAME ${name}
+            COMMAND "${name}_tests"
+            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+            )
 endforeach ()

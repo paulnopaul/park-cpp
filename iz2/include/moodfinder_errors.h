@@ -1,0 +1,3 @@
+#define EMPTY_FILE_ERROR -2
+#define FILE_NOT_EXIST_ERROR -1
+#define MMAP_FAILED -3

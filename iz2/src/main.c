@@ -10,10 +10,15 @@
 #include <time.h>
 #include <stdio.h>
 
+void construct_file(const char *path, int status, int size);
+
+
+
 int main(int argc, char *argv[])
 {
     struct timespec start, finish;
     double elapsed;
+
     clock_gettime(CLOCK_MONOTONIC, &start);
     int mood = find_mood(argv[1]);
     clock_gettime(CLOCK_MONOTONIC, &finish);

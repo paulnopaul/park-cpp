@@ -26,6 +26,7 @@ endif ()
 
 set(libmoodfinder_s_sources
         ${PROJECT_SOURCE_DIR}/include/moodfinder.h
+        ${PROJECT_SOURCE_DIR}/include/moodfinder_errors.h
         ${PROJECT_SOURCE_DIR}/src/moodfinder_s.c
         )
 
@@ -36,6 +37,8 @@ add_library(libmoodfinder_s STATIC ${libmoodfinder_s_sources})
 
 set(main_sources
         ${PROJECT_SOURCE_DIR}/src/main.c
+        ${PROJECT_SOURCE_DIR}/src/moodfinder_profiler.c
+        ${PROJECT_SOURCE_DIR}/include/moodfinder_profile.h
         )
 
 add_executable(main ${main_sources})

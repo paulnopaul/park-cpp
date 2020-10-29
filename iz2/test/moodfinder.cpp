@@ -1,18 +1,18 @@
 #include "gtest/gtest.h"
 #include <string>
-#include <sstream>
 
 using namespace std;
 
 
 string construct_path(const string &filename)
 {
-    const static string examples = "./examples/";
+    const static string examples = "examples/";
     return examples + filename;
 }
 
 extern "C" {
 #include "moodfinder.h"
+#include "moodfinder_errors.h"
 }
 
 TEST(find_mood_positive, clear)
@@ -48,5 +48,12 @@ TEST(find_mood_neutral, dirty)
 TEST(find_mood_errors, empty)
 {
     const string filename = "empty.txt";
-    ASSERT_EQ(find_mood(construct_path(filename).c_str()), -1);
+    ASSERT_EQ(find_mood(construct_path(filename).c_str()), EMPTY_FILE_ERROR);
+}
+
+TEST(find_mood_errors, not_exitsing)
+{
+    const string s = construct_path("not_existing.txt");
+    static const char *filename = s.c_str();
+    ASSERT_EQ(find_mood(filename), FILE_NOT_EXIST_ERROR);
 }

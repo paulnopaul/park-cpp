@@ -1,7 +1,7 @@
 #include "moodfinder.h"
+#include "moodfinder_errors.h"
 
 #include <fcntl.h>
-#include <stdio.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -22,7 +22,11 @@ int find_mood(const char *filename)
     if (region == MAP_FAILED)
     {
         close(fd);
-        return -1;
+        if (file_size == 0)
+            return EMPTY_FILE_ERROR;
+        if (fd == -1)
+            return FILE_NOT_EXIST_ERROR;
+        return MMAP_FAILED;
     }
     long long mood = 0;
     for (size_t i = 0; i < file_size - 1; ++i)
@@ -30,6 +34,7 @@ int find_mood(const char *filename)
         if (region[i] == ':')
             mood += (region[i + 1] == ')') + -1 * (region[i + 1] == '(');
     }
+    munmap(region, file_size);
     close(fd);
     return mood > 0 ? POSITIVE : (mood == 0 ? NEUTRAL : NEGATIVE);
 }
