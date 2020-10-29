@@ -32,7 +32,7 @@ double profile_on_file(const char *filename, int count)
     for (int i = 0; i < count; ++i)
     {
         clock_gettime(CLOCK_MONOTONIC, &start);
-        int mood = find_mood(filename);
+        find_mood(filename);
         clock_gettime(CLOCK_MONOTONIC, &finish);
         double elapsed = (double) (finish.tv_sec - start.tv_sec) + (double)(finish.tv_nsec - start.tv_nsec) / 1000000000.0;
         mean_time += elapsed / (double)count;
