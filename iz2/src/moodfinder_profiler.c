@@ -27,7 +27,6 @@ void generate_file(const char *filename, int status, int size)
 double profile_on_file(const char *filename, int count)
 {
     struct timespec start, finish;
-    double elapsed;
     double mean_time = 0;
 
     for (int i = 0; i < count; ++i)
@@ -35,7 +34,7 @@ double profile_on_file(const char *filename, int count)
         clock_gettime(CLOCK_MONOTONIC, &start);
         int mood = find_mood(filename);
         clock_gettime(CLOCK_MONOTONIC, &finish);
-        elapsed = (double) (finish.tv_sec - start.tv_sec) + (double)(finish.tv_nsec - start.tv_nsec) / 1000000000.0;
+        double elapsed = (double) (finish.tv_sec - start.tv_sec) + (double)(finish.tv_nsec - start.tv_nsec) / 1000000000.0;
         mean_time += elapsed / (double)count;
     }
     return mean_time;
