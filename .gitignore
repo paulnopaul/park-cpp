@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Macos things
+*.DS_Store
+*.idea/
+*cmake-build*
+
