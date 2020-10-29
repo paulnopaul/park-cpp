@@ -10,6 +10,8 @@
 int find_mood(const char *filename)
 {
     int fd = open(filename, O_RDONLY);
+    if (fd == -1)
+        return FILE_NOT_EXIST_ERROR;
     struct stat st;
     stat(filename, &st);
     size_t file_size = st.st_size;
@@ -24,8 +26,6 @@ int find_mood(const char *filename)
         close(fd);
         if (file_size == 0)
             return EMPTY_FILE_ERROR;
-        if (fd == -1)
-            return FILE_NOT_EXIST_ERROR;
         return MMAP_FAILED;
     }
     long long mood = 0;
