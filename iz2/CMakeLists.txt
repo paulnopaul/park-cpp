@@ -1,47 +1,44 @@
 cmake_minimum_required(VERSION 3.1)
 
-project(iz2 C CXX)
+project(iz1 C CXX)
 
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+#
+### GCOV
+#
 
-##
-### Valgrind
-##
-#
-set(MEMORYCHECK_COMMAND_OPTIONS "${MEMORYCHECK_COMMAND_OPTIONS} --leak-check=full")
-set(MEMORYCHECK_COMMAND_OPTIONS "${MEMORYCHECK_COMMAND_OPTIONS} --track-fds=yes")
-set(MEMORYCHECK_COMMAND_OPTIONS "${MEMORYCHECK_COMMAND_OPTIONS} --trace-children=yes")
-set(MEMORYCHECK_COMMAND_OPTIONS "${MEMORYCHECK_COMMAND_OPTIONS} --error-exitcode=1")
-#
-##
-### Test definitions ###
-##
-#
-include(CTest)
-#
-configure_file(install_gtest.cmake
-        googletest-download/CMakeLists.txt)
-execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
-execute_process(COMMAND ${CMAKE_COMMAND} --build .
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
+if (ENABLE_GCOV)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ftest-coverage -fprofile-arcs")
+endif ()
 
-add_subdirectory(${CMAKE_BINARY_DIR}/googletest-src
-        ${CMAKE_BINARY_DIR}/googletest-build)
 
-enable_testing()
+include(configure_test.cmake)
 add_subdirectory(test)
 
+if (ENABLE_CPPCHECK)
+    include(configure_cppcheck.cmake)
+endif ()
 
+##
 ### Source definitions ###
+##
+
+set(libmoodfinder_s_sources
+        ${PROJECT_SOURCE_DIR}/include/moodfinder.h
+        ${PROJECT_SOURCE_DIR}/src/moodfinder_s.c
+        )
 
 
 include_directories("${PROJECT_SOURCE_DIR}/include")
 
-file(GLOB sources
-        "${PROJECT_SOURCE_DIR}/include/*.h"
-        "${PROJECT_SOURCE_DIR}/src/*.c")
+add_library(libmoodfinder_s STATIC ${libmoodfinder_s_sources})
 
-add_executable(iz2 ${sources})
+set(main_sources
+        ${PROJECT_SOURCE_DIR}/src/main.c
+        )
+
+add_executable(main ${main_sources})
+target_link_libraries(main libmoodfinder_s)
+
+

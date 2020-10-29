@@ -21,7 +21,6 @@ int find_mood(const char *filename)
                         0);
     if (region == MAP_FAILED)
     {
-        printf("mmap failed\n");
         close(fd);
         return -1;
     }
@@ -31,5 +30,6 @@ int find_mood(const char *filename)
         if (region[i] == ':')
             mood += (region[i + 1] == ')') + -1 * (region[i + 1] == '(');
     }
-    return mood > 0 ? POSITIVE : NEGATIVE;
+    close(fd);
+    return mood > 0 ? POSITIVE : (mood == 0 ? NEUTRAL : NEGATIVE);
 }

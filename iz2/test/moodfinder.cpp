@@ -39,3 +39,14 @@ TEST(find_mood_negative, dirty)
     ASSERT_EQ(find_mood(construct_path(filename).c_str()), NEGATIVE);
 }
 
+TEST(find_mood_neutral, dirty)
+{
+    const string filename = "neutral.txt";
+    ASSERT_EQ(find_mood(construct_path(filename).c_str()), NEUTRAL);
+}
+
+TEST(find_mood_errors, empty)
+{
+    const string filename = "empty.txt";
+    ASSERT_EQ(find_mood(construct_path(filename).c_str()), -1);
+}
